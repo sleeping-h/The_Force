@@ -30,6 +30,7 @@ mErrors = new Array();
 
 $( document ).ready(function()
 {
+    
     //--------------------- FOOTER UI ------------
     $('#footer')
         .mouseover( function(event)
@@ -198,24 +199,8 @@ $( document ).ready(function()
 
     $("#myFullScreen")
         .button()
-        .bind("change", function(event)
-        {
-            if(!window.screenTop && !window.screenY)
-            {
-                if (document.exitFullscreen)
-                    document.exitFullscreen();
-                else if (document.mozCancelFullScreen)
-                   document.mozCancelFullScreen();
-                else if (document.webkitExitFullscreen)
-                   document.webkitExitFullscreen();
-            } else {
-                if (document.body.requestFullScreen)
-                    document.body.requestFullScreen();
-                else if (document.body.mozRequestFullScreen)
-                    document.body.mozRequestFullScreen();
-                else if (document.body.webkitRequestFullScreen)
-                    document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-            }
+        .click(function() {
+            document.body.requestFullscreen();
         });
 
     //--------------------- AUDIO PANEL ------------
