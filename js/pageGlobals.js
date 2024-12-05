@@ -28,6 +28,11 @@ var editor = null;
 mErrors = new Array();
 
 
+// fps limit
+let fps = 60;
+let interval = 1000 / fps;
+let renderTimeout;
+
 $( document ).ready(function()
 {
     
@@ -58,6 +63,21 @@ $( document ).ready(function()
         {
             quality = $("#selectQuality").val();
             resizeGLCanvas(window.innerWidth, window.innerHeight);
+        });
+
+
+    $("#selectMaxFPS")
+        .selectmenu({
+            // style:"popup" //hope jqueryUI implements this soon.
+            position: {collision: "flip"}
+        })
+        .on("selectmenuchange", function(event)
+        {
+            fps = $("#selectMaxFPS").val();
+            interval = 1000 / fps;
+            // Clear the current timeout and re-trigger renderLoop2 with the new interval
+            clearTimeout(renderTimeout);
+            renderLoop2();
         });
 
     $("#selectFontSize")
@@ -1186,7 +1206,7 @@ $( document ).ready(function()
 
     function renderLoop2()
     {
-        requestAnimationFrame(renderLoop2);
+        renderTimeout = setTimeout(renderLoop2, interval);
 
         if (gl === null) return;
 
