@@ -1346,6 +1346,7 @@ var Range = ace.require("ace/range").Range
 
 function setShader(result, fromScript)
 {
+    editor.session.addMarker(new Range(0, 0, 1000, 1000), "Highlight", "text", false);
     while (mErrors.length > 0)
     {
         var mark = mErrors.pop();
