@@ -1284,7 +1284,7 @@ $(document)
     .keydown( function( event )
     {
         updateKeyboardDown(event.keyCode);
-        if (event.ctrlKey === true && event.shiftKey === true && event.KeyZ === true)
+        if (event.ctrlKey === true && event.shiftKey === true && event.altKey === true)
         {
              $("#footer").fadeToggle('slow', function(){});
              $("#editor").fadeToggle('slow', function(){});
